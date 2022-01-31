@@ -1,8 +1,50 @@
+:root{
+    --text-normal: rgba(220,221,222, 0.95);
+    --background-primary: rgba(54, 57, 63, 0.95);
+    --background-secondary: rgba(47, 49, 54, 0.95);
+}
+
 .login{
-    background-color: #4f545c;
+    background-color: var(--background-secondary);
     padding: 1em;
+    margin-top: 10%;
+    border-radius: 0.25rem;
 }
 
 body{
-    background-color: #36393f;
+    background-color: var(--background-primary);
+    color: var(--text-normal);
+}
+
+.form-group{
+    margin-bottom: 20px ;
+}
+input{
+    text-align: center;
+}
+
+.btn{
+    color: var(--text-normal);
+    background-color: rgba(79, 84, 92, 0.95);
+}
+.btn:hover{
+    background-color: rgba(185, 187, 190, 0.95);
+}
+
+nav{
+    padding: 1em;
+    margin-bottom: 2rem;
+    border-radius: 0 0 18px 18px;
+}
+
+.card{
+    background-color: var(--background-secondary);
+    height: 13em;
+}
+.card-img{
+    height: 100%;
+}
+
+.card-img-overlay{
+    background-color: rgba(0,0,0, 0.35);
 }
