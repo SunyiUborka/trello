@@ -18,9 +18,6 @@
 <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="boards.html">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
@@ -30,13 +27,37 @@
             </div>
             <div class="form-inline">
                 <form action="">
-                    <button type="submit" class="btn" onclick="logout()">
+                    <a type="submit" class="btn" href="./index.html" onclick="logout()">
                         Kilépés
-                    </button>
+                    </a>
                 </form>
 
             </div>
         </nav>
+    <div class="rov">
+        <div class="col">
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Új tábla
+            </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Új tábla</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                        
+                            </div>
+                             <div class="modal-footer">
+                                <button type="button" class="btn" data-bs-dismiss="modal">Létrehoz</button>
+                                <button type="button" class="btn" data-bs-dismiss="modal">Mégse</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="row content">
 
     </div>
@@ -45,13 +66,14 @@
 <template>
     <div class="col-3">
         <div class="card text-white">
-            <img class="card-img" src="..." alt="Card image">
+            <img class="card-img" src="">
             <div class="card-img-overlay">
                 <h5 class="card-title">Card title</h5>
             </div>
         </div>
     </div>
 </template>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="./js/main.js"></script>
 <script src="./js/board.js"></script>
 </body>

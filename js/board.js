@@ -16,6 +16,7 @@ function show(){
         let card = document.importNode(template, true);
         card.querySelector('.card-img').src = item.prefs.backgroundImage;
         card.querySelector('.card-title').innerHTML = item.name;
+        card.querySelector('.card').addEventListener("click", () => window.location.href = `https://api.trello.com/1/boards/${item.id}/lists?key=${key}&token=${token}`)
         document.querySelector('.content').append(card);
     })
 }
