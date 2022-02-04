@@ -47,10 +47,10 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                        
+                                <input type="text" id="board_name" minlength="1" maxlength="16384">
                             </div>
                              <div class="modal-footer">
-                                <button type="button" class="btn" data-bs-dismiss="modal">Létrehoz</button>
+                                <button type="button" class="btn" data-bs-dismiss="modal" onclick="board_create()">Létrehoz</button>
                                 <button type="button" class="btn" data-bs-dismiss="modal">Mégse</button>
                             </div>
                         </div>
@@ -69,6 +69,7 @@
             <img class="card-img" src="">
             <div class="card-img-overlay">
                 <h5 class="card-title">Card title</h5>
+                <button class="btn delete">Törlés</button>
             </div>
         </div>
     </div>
