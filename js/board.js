@@ -35,8 +35,8 @@ function show() {
                     console.log(cardtemp)
                     cardtemp.querySelector('h6').innerHTML = card.name;
                     cardtemp.querySelector('p').innerText = card.desc;
-                    cardtemp.querySelector('p').addEventListener('click', ()=>{
-                        let desc = prompt('Leírás')
+                    cardtemp.querySelector('#desc').onclick = ()=>{
+                        let desc = prompt('Leírás') || card.desc
                         fetch(`https://api.trello.com/1/cards/${card.id}?key=${key}&token=${token}`, {
                             headers: {
                                 'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ function show() {
                             method: 'PUT',
                             body: JSON.stringify({desc: `${desc}`})
                         }).then(()=>{window.location.reload()})
-                    })
+                    }
                     cardtemp.querySelector('#delete').onclick = ()=>{
                         fetch(`https://api.trello.com/1/cards/${card.id}?key=${key}&token=${token}`, {
                             method: 'DELETE'
@@ -53,7 +53,7 @@ function show() {
                         })
                     };
                     cardtemp.querySelector('#rename').onclick = ()=>{
-                        let name = prompt('Kártya új neve')
+                        let name = prompt('Kártya új neve') || card.name
                         fetch(`https://api.trello.com/1/cards/${card.id}?key=${key}&token=${token}`, {
                             headers: {
                                 'Content-Type': 'application/json',
