@@ -16,7 +16,7 @@ function show(){
             card.querySelector('.card-img').src = item.prefs.backgroundImage;
         }else card.querySelector('.card-img').style.backgroundColor = item.prefs.backgroundColor;
         card.querySelector('.card-title').innerHTML = item.name;
-        card.querySelector('.card-title').href = `board.html?id=${item.id}`;
+        card.querySelector('.card-title').addEventListener('click', ()=> window.location.href = `board.html?id=${item.id}`);
         //card.querySelector('.card').addEventListener("click", () => window.location.href = `https://api.trello.com/1/boards/${item.id}/lists?key=${key}&token=${token}`)
         card.querySelector('#delete').onclick = function(){
             if (confirm('ár jú súr öbáut det?')){
