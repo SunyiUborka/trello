@@ -40,6 +40,7 @@ nav{
 .card{
     background-color: var(--background-secondary);
     height: 13em;
+    margin-bottom: 2em;
 }
 .card-img{
     height: 100%;
@@ -52,4 +53,12 @@ nav{
 
 .row{
     padding-top: 2em;
+}
+
+.modal-title{
+    color: white;
+}
+
+.modal-content{
+    background-color: var(--background-primary);
 }

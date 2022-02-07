@@ -12,20 +12,35 @@ function show(){
     let template = document.querySelector("template").content;
     boards.forEach(item =>{
         let card = document.importNode(template, true);
-        card.querySelector('.card-img').src = item.prefs.backgroundImage;
+        if (item.prefs.backgroundColor == null){
+            card.querySelector('.card-img').src = item.prefs.backgroundImage;
+        }else card.querySelector('.card-img').style.backgroundColor = item.prefs.backgroundColor;
         card.querySelector('.card-title').innerHTML = item.name;
         //card.querySelector('.card').addEventListener("click", () => window.location.href = `https://api.trello.com/1/boards/${item.id}/lists?key=${key}&token=${token}`)
-        card.querySelector('.delete').onclick = function(){
-            fetch(`https://api.trello.com/1/boards/${item.id}?key=${key}&token=${token}`, {
-                method: 'DELETE'
-            }).then(()=> {
+        card.querySelector('#delete').onclick = function(){
+            if (confirm('ár jú súr öbáut det?') == true){
+                fetch(`https://api.trello.com/1/boards/${item.id}?key=${key}&token=${token}`, {
+                    method: 'DELETE'
+                }).then(()=> {
+                    window.location.reload()
+                });
+            }
+        }
+        card.querySelector('#rename').onclick = function (){
+            let name = prompt('Új név');
+            fetch(`https://api.trello.com/1/boards/${item.id}?key=${key}&token=${token}`,{
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'PUT',
+                body: JSON.stringify({name: `${name}`})
+            }).then(()=>{
                 window.location.reload()
-            });
+            })
         }
         document.querySelector('.content').append(card);
     })
 }
-
 
 function board_create(){
     let board_name = document.querySelector('#board_name');
