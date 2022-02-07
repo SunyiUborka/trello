@@ -1,11 +1,7 @@
 let boards, create, Delete;
 
 let getName = fetch(`https://api.trello.com/1/members/me/boards?key=${key}&token=${token}`, {
-    method: 'GET',
-    headers:
-        {
-            'Accept': 'application/json'
-        }}).then(r => r.json()).then(d => boards = d);
+    method: 'GET'}).then(r => r.json()).then(d => boards = d);
 
 document.querySelector('#board_name').value = '';
 
@@ -19,14 +15,17 @@ function show(){
         card.querySelector('.card-img').src = item.prefs.backgroundImage;
         card.querySelector('.card-title').innerHTML = item.name;
         //card.querySelector('.card').addEventListener("click", () => window.location.href = `https://api.trello.com/1/boards/${item.id}/lists?key=${key}&token=${token}`)
-        card.querySelector('.delete').onclick = async function(){
+        card.querySelector('.delete').onclick = function(){
             fetch(`https://api.trello.com/1/boards/${item.id}?key=${key}&token=${token}`, {
                 method: 'DELETE'
+            }).then(()=> {
+                window.location.reload()
             });
         }
         document.querySelector('.content').append(card);
     })
 }
+
 
 function board_create(){
     let board_name = document.querySelector('#board_name');
@@ -34,7 +33,9 @@ function board_create(){
     if (board_name.value.length > 1) {
         create = fetch(`https://api.trello.com/1/boards/?key=${key}&token=${token}&name=${board_name.value}`, {
             method: 'POST'
-            });
+            }).then(()=> {
+                window.location.reload()
+        });
             
     }else{
         alert('Adjon meg egy karaktert!!!!!444!!!!')
