@@ -62,3 +62,7 @@ nav{
 .modal-content{
     background-color: var(--background-primary);
 }
+
+.card .card-title{
+    cursor: pointer;
+}
