@@ -3,8 +3,6 @@ let boards, create, Delete;
 let getName = fetch(`https://api.trello.com/1/members/me/boards?key=${key}&token=${token}`, {
     method: 'GET'}).then(r => r.json()).then(d => boards = d);
 
-document.querySelector('#board_name').value = '';
-
 let allFetch = Promise.all([getName]);
 
 allFetch.then(()=>show());
@@ -17,7 +15,6 @@ function show(){
         }else card.querySelector('.card-img').style.backgroundColor = item.prefs.backgroundColor;
         card.querySelector('.card-title').innerHTML = item.name;
         card.querySelector('.card-title').addEventListener('click', ()=> window.location.href = `board.html?id=${item.id}`);
-        //card.querySelector('.card').addEventListener("click", () => window.location.href = `https://api.trello.com/1/boards/${item.id}/lists?key=${key}&token=${token}`)
         card.querySelector('#delete').onclick = function(){
             if (confirm('ár jú súr öbáut det?')){
                 fetch(`https://api.trello.com/1/boards/${item.id}?key=${key}&token=${token}`, {
@@ -59,5 +56,3 @@ function board_create(){
         alert('Adjon meg egy karaktert!!!!!444!!!!')
     }
 }
-//https://api.trello.com/1/boards/{id}
-//https://api.trello.com/1/members/me/boards?fields=name,url&key={key}&token={token}
