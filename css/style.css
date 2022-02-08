@@ -74,3 +74,11 @@ nav{
     color: white;
     background-color: var(--background-primary);
 }
+
+p{
+    padding-left: 1rem;
+}
+
+.uwu:hover{
+    color: black;
+}
