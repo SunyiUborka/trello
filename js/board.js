@@ -18,14 +18,16 @@ function show() {
         let list = document.importNode(templist, true);
         list.querySelector('.card-title').innerHTML = item.name;
         list.querySelector('#newcard').onclick = ()=>{
-            let name = prompt('Új kártya') || "";
-            fetch(`https://api.trello.com/1/cards?idList=${item.id}&key=${key}&token=${token}`, {
+            let name = prompt('Új kártya');
+            if(name){
+                fetch(`https://api.trello.com/1/cards?idList=${item.id}&key=${key}&token=${token}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({name:`${name}`})
             }).then(()=>{window.location.reload()})
+            }
         }
         if (cards){
             cards.forEach(card=>{
@@ -34,14 +36,16 @@ function show() {
                     cardtemp.querySelector('h6').innerHTML = card.name;
                     cardtemp.querySelector('p').innerText = card.desc;
                     cardtemp.querySelector('#desc').onclick = ()=>{
-                        let desc = prompt('Leírás') || card.desc
-                        fetch(`https://api.trello.com/1/cards/${card.id}?key=${key}&token=${token}`, {
+                        let desc = prompt('Leírás')
+                        if(desc){
+                            fetch(`https://api.trello.com/1/cards/${card.id}?key=${key}&token=${token}`, {
                             headers: {
                                 'Content-Type': 'application/json',
                             },
                             method: 'PUT',
                             body: JSON.stringify({desc: `${desc}`})
                         }).then(()=>{window.location.reload()})
+                        }      
                     }
                     cardtemp.querySelector('#delete').onclick = ()=>{
                         fetch(`https://api.trello.com/1/cards/${card.id}?key=${key}&token=${token}`, {
@@ -97,7 +101,6 @@ function show() {
         fetch(`https://api.trello.com/1/lists?name=${newlistname}&idBoard=${boardId}&key=${key}&token=${token}`, {
         method: 'POST'
         }).then(()=>{window.location.reload()})
-        }
-        
+        }    
     }
 }
