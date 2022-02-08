@@ -14,12 +14,11 @@ function show() {
     let templist = document.querySelectorAll("template")[0].content;
 
     let tempcard = document.querySelectorAll("template")[1].content;
-    console.log(tempcard)
     lists.forEach(item => {
         let list = document.importNode(templist, true);
         list.querySelector('.card-title').innerHTML = item.name;
         list.querySelector('#newcard').onclick = ()=>{
-            let name = prompt('Új kártya');
+            let name = prompt('Új kártya') || "";
             fetch(`https://api.trello.com/1/cards?idList=${item.id}&key=${key}&token=${token}`, {
                 method: 'POST',
                 headers: {
@@ -32,7 +31,6 @@ function show() {
             cards.forEach(card=>{
                 if (card.idList == item.id){
                     let cardtemp = document.importNode(tempcard, true);
-                    console.log(cardtemp)
                     cardtemp.querySelector('h6').innerHTML = card.name;
                     cardtemp.querySelector('p').innerText = card.desc;
                     cardtemp.querySelector('#desc').onclick = ()=>{
