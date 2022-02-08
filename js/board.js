@@ -64,19 +64,18 @@ function show() {
                 }
             })
         }
-        list.querySelector('#Delete').onclick = function () {
-            fetch(`https://api.trello.com/1/lists/${item.id}?key=${key}&token=${token}`, {
+        list.querySelector('#list_remove').onclick = function () {
+            if(confirm('ár jú súr öbáut det?')){
+                fetch(`https://api.trello.com/1/lists/${item.id}?key=${key}&token=${token}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                   },       
-                body: JSON.stringify({closed: true})
-            }).then(()=> {
-                window.location.reload()
-        });
+                body: JSON.stringify({closed: true})}).then(()=> {window.location.reload()});
+            }
         };
 
-        list.querySelector('#update').onclick = function (){
+        list.querySelector('#list_update').onclick = function (){
             let new_name = prompt('új lista név!')
             if (new_name != null){
                 fetch(`https://api.trello.com/1/lists/${item.id}?key=${key}&token=${token}`,{
@@ -92,4 +91,13 @@ function show() {
         }
         document.querySelector('.content').append(list);
     });
+    document.querySelector('#newList').onclick = function (){
+        let newlistname = prompt('Új lista név!');
+        if(newlistname){
+        fetch(`https://api.trello.com/1/lists?name=${newlistname}&idBoard=${boardId}&key=${key}&token=${token}`, {
+        method: 'POST'
+        }).then(()=>{window.location.reload()})
+        }
+        
+    }
 }
