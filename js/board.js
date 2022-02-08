@@ -14,6 +14,32 @@ function show() {
     lists.forEach(item => {
         let list = document.importNode(template, true);
         list.querySelector('.card-title').innerHTML = item.name;
+        ist.querySelector('#Delete').onclick = function () {
+            fetch(`https://api.trello.com/1/lists/${item.id}?key=${key}&token=${token}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                  },       
+                body: JSON.stringify({closed: true})
+            }).then(()=> {
+                window.location.reload()
+        });
+        };
+
+        list.querySelector('#update').onclick = function (){
+            let new_name = prompt('új lista név!')
+            if (new_name != null){
+                fetch(`https://api.trello.com/1/lists/${item.id}?key=${key}&token=${token}`,{
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    method: 'PUT',
+                    body: JSON.stringify({name: `${new_name}`})
+                }).then(()=>{
+                       window.location.reload()
+                })
+            }
+        }
         document.querySelector('.content').append(list);
     });
 }
